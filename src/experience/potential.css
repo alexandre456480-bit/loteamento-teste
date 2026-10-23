@@ -1,0 +1,77 @@
+.terrain-potential { color: #395245; }
+.potential-eyebrow { color: #8d815e; font-size: 8px; letter-spacing: .12em; line-height: 1.6; margin-bottom: 9px; }
+#buyer-experience .potential-toggle { width: 100%; min-height: 66px; justify-content: space-between; gap: 12px; border: 1px solid #c4d3bb; border-radius: 11px; padding: 12px 13px; background: linear-gradient(125deg,#eaf0df,#f7f5e9); text-align: left; }
+.potential-toggle > span:first-child { display: grid; gap: 6px; min-width: 0; }
+.potential-toggle strong { font-family: Georgia,serif; font-size: 18px; font-weight: 400; }
+.potential-toggle small { font-size: 10px; line-height: 1.5; color: #7a8868; }
+.potential-toggle > span:last-child { color: #9b834d; font-size: 24px; }
+#potential-body { padding-top: 15px; }
+.potential-combined { display: grid; gap: 8px; padding: 13px; border: 1px solid #b7cfc8; border-radius: 10px; background: #edf3eb; margin-bottom: 12px; }
+.potential-combined > strong { color: #356563; font-size: 16px; }
+.potential-combined > span { font-size: 11px; }
+.potential-combined p { font-size: 11px; line-height: 1.6; margin: 0; }
+.potential-combined small { font-size: 9px; line-height: 1.65; color: #7c8a76; }
+.potential-lot-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 13px; }
+.potential-lot-pills > span { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 8px; border: 1px solid #d5dfc9; border-radius: 8px; background: #f0f4e8; font-size: 11px; }
+.potential-lot-pills small { color: #879475; font-size: 8px; }
+#buyer-experience .potential-lot-pills button { min-height: 30px; min-width: 30px; font-size: 19px; }
+.potential-dimensions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin: 10px 0; }
+.potential-dimensions > div { display: grid; gap: 6px; padding: 10px; background: #f0f3e9; border: 1px solid #dce4d2; border-radius: 8px; min-width: 0; }
+.potential-dimensions span { font-size: 9px; color: #7f8e72; line-height: 1.5; }
+.potential-dimensions strong { font-size: 15px; color: #416442; font-weight: 500; overflow-wrap: anywhere; }
+.potential-diagram { margin: 13px 0 15px; background: #f3f5ed; border: 1px solid #dce4d3; border-radius: 11px; padding: 12px; }
+.potential-diagram svg { display: block; width: 100%!important; height: 180px!important; overflow: hidden; }
+.potential-ground { fill: #e0ead5; stroke: #98b096; stroke-linejoin: round; }
+.potential-divisa { fill: none; stroke: #a6b59b; stroke-dasharray: 3 2; }
+.potential-building { fill: #779a94; stroke: none; }
+.potential-garden { fill: #88b46c; }
+.potential-path { fill: #d5bf8d; }
+.potential-parking { fill: #a3b3b7; }
+.potential-diagram figcaption { font-size: 9px; line-height: 1.6; margin-top: 9px; color: #859179; text-align: center; }
+.potential-profile { padding: 0 0 10px; border-bottom: 1px solid #dfe5d5; }
+.potential-profile article { margin-top: 12px; }
+.potential-profile strong { font-size: 11px; color: #4e704a; font-weight: 500; }
+.potential-profile p { margin: 4px 0 0; font-size: 10px; line-height: 1.7; color: #7c8d70; }
+.potential-options { display: grid; gap: 10px; }
+.potential-option { padding: 13px; border: 1px solid #dce4d0; border-radius: 11px; background: #f5f7ee; min-width: 0; }
+.potential-option.is-active { border-color: #87aaa0; background: #edf3e8; box-shadow: inset 3px 0 #789d8a; }
+.potential-option h5 { margin: 0 0 8px; font-family: Georgia,serif; font-size: 18px; line-height: 1.3; font-weight: 400; color: #3d5d49; }
+.potential-option p { font-size: 10px; line-height: 1.7; color: #7c8c70; margin: 0 0 8px; }
+.potential-option-facts { display: block; color: #788365; font-size: 9px; line-height: 1.65; }
+#buyer-experience .potential-option button { display: flex; justify-content: space-between; width: 100%; border: 1px solid #c5d5ba; background: #e7efdc; color: #4a6b3d; font-size: 10px; min-height: 40px; padding: 8px 10px; margin-top: 11px; }
+#buyer-experience .potential-option.is-active button { background: #3c6958; color: #fff2ce; border-color: #3c6958; }
+.potential-new { display: inline-block; font-size: 8px; padding: 4px 7px; margin-bottom: 9px; border-radius: 5px; background: #f0e5c8; color: #8f7541; }
+.potential-active { padding: 13px; border: 1px solid #bccdb7; border-radius: 10px; background: #eef3e6; margin-top: 13px; }
+.potential-active .section-heading { margin-bottom: 10px; }
+#buyer-experience .potential-active h4 { margin: 0; line-height: 1.6; }
+#buyer-experience .potential-active .section-heading button { min-width: 36px; font-size: 22px; }
+.potential-metrics { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px 9px; }
+.potential-metrics > div { display: grid; gap: 5px; }
+.potential-metrics span { font-size: 9px; line-height: 1.5; color: #819070; }
+.potential-metrics strong { font-weight: 500; font-size: 14px; line-height: 1.4; color: #45613d; overflow-wrap: anywhere; }
+.potential-footnote, #buyer-experience .potential-footnote { font-size: 9px; line-height: 1.7; color: #87947c; margin: 10px 0; }
+.potential-disclaimer { border-top: 1px solid #dfe5d6; padding-top: 12px; margin: 15px 0 0; color: #8a947d; font-size: 9px; line-height: 1.8; }
+.potential-map-key { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 9px; color: #71846d; }
+.potential-map-key > span { display: inline-flex; gap: 5px; align-items: center; }
+.potential-map-key i { width: 8px; height: 8px; border-radius: 2px; }
+.key-built { background: #779a94; }.key-path { background: #d5bf8d; }.key-parking { background: #a3b3b7; }.key-garden { background: #88b46c; }
+.potential-neighbors { border-top: 1px solid #dfe5d6; padding-top: 4px; margin-top: 17px; }
+#buyer-experience .potential-neighbors > summary { min-height: 44px; padding: 10px 0; font-size: 12px; color: #54734b; font-weight: 500; }
+.potential-neighbors > p { font-size: 10px; line-height: 1.7; color: #829174; }
+#buyer-experience .potential-neighbor { width: 100%; justify-content: space-between; text-align: left; gap: 8px; min-height: 61px; padding: 9px 11px; margin-bottom: 6px; border: 1px solid #d5dfc9; background: #f0f4e7; }
+.potential-neighbor > span:first-child { display: grid; gap: 6px; min-width: 0; }
+.potential-neighbor strong { font-size: 12px; font-weight: 500; color: #4b6d43; }
+.potential-neighbor strong small { margin-left: 6px; color: #7b8c70; }
+.potential-neighbor small { font-size: 9px; line-height: 1.5; color: #829272; }
+#buyer-experience .potential-compare-set { width: 100%; background: #3f6654; color: #fff1c8; min-height: 43px; padding: 10px; font-size: 11px; margin-top: 7px; }
+#buyer-experience .potential-reset { width: 100%; padding: 8px; font-size: 10px; margin-top: 5px; }
+.potential-comparison-summary { border-top: 1px solid #dce3d3; border-bottom: 1px solid #dce3d3; padding: 0 0 11px; margin: 12px 0; }
+.potential-comparison-summary p { font-size: 11px; line-height: 1.8; color: #5f7854; margin-bottom: 6px; }
+.potential-comparison-summary small { font-size: 9px; line-height: 1.7; color: #8a957b; }
+.potential-comparison-card .potential-diagram svg { height: 135px!important; }
+@media(max-width:960px), (pointer:coarse) {
+  #buyer-experience .potential-lot-pills button { min-width: 44px; min-height: 44px; }
+  #buyer-experience .potential-option button, #buyer-experience .potential-compare-set, #buyer-experience .potential-reset { min-height: 44px; }
+  .potential-option p, .potential-neighbors > p { font-size: 11px; }
+  .potential-disclaimer { font-size: 10px; }
+}

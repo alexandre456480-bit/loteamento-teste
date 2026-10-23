@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vite/
+tools/digitization.pkl
+tools/segmentation.npz
+tools/analysis/
+*.log
+.vercel/
+.env
+.env.*
+!.env.example
+references/
+loteamento-quadras/
+tools/

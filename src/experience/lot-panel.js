@@ -1,0 +1,29 @@
+import { money, number, statusNames, typeNames } from './catalog.js';
+
+const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+export const lotPanelTabs = [
+  { id: 'overview', name: 'Terreno' },
+  { id: 'potential', name: 'Potencial' },
+  { id: 'payment', name: 'Pagamento' },
+];
+
+export function renderLotPanel({ lot, state, tab, icon, catalog, renderDimensions, renderPayments, renderPotential }) {
+  const label = `Q${String(lot.block).padStart(2, '0')} · L${String(lot.number).padStart(2, '0')}`;
+  const favorite = state.favoriteLotIds.includes(lot.id);
+  const overview = () => `<div class="lot-overview-meta"><span class="lot-status status-${lot.status}">${statusNames[lot.status]}</span><span>${typeNames[lot.type] || 'Outro'}</span></div>
+    ${lot.pricePerM2 ? `<div class="lot-unit-price"><span>Valor por m²</span><strong>${money(lot.pricePerM2)}</strong></div>` : ''}
+    <section class="lot-dimensions-block"><h3>Medidas do terreno</h3>${renderDimensions(lot)}</section>
+    ${lot.description ? `<details class="lot-description"><summary>Sobre este lote</summary><p>${escape(lot.description)}</p></details>` : ''}
+    <div class="lot-explore-grid">${lot.type !== 'utility' ? `<button type="button" data-lot-tab="potential"><span class="lot-explore-icon">${icon('house')}</span><strong>O que construir?</strong><small>Explore o potencial</small></button>` : ''}<button type="button" data-action="solar"><span class="lot-explore-icon">${icon('sun')}</span><strong>Sol e sombras</strong><small>Explore os horários</small></button></div>
+    <div class="lot-secondary-actions"><button type="button" data-action="compare-lot">${icon('compare')}${state.comparisonLotIds.includes(lot.id) ? 'Na comparação' : 'Comparar'}</button><button type="button" data-action="share">${icon('share')}Compartilhar</button></div>`;
+  const payment = () => `<header class="lot-tab-heading"><p>ESCOLHA COMO EXPLORAR OS VALORES</p><h3>Condições de pagamento</h3><span>Valores individuais de ${label}. Confirme vigência e condições no atendimento.</span></header>${renderPayments(lot)}`;
+  const potential = () => `<header class="lot-tab-heading"><p>DESCUBRA AS POSSIBILIDADES</p><h3>Potencial do terreno</h3><span>Explore usos indicativos e veja o que muda ao combinar vizinhos.</span></header>${renderPotential(lot, { ...state, potentialOpen: true })}`;
+  const contact = () => `<section class="lot-contact-view"><header class="lot-tab-heading"><p>SEU PRÓXIMO PASSO</p><h3>Interesse neste lote</h3><span>${label} · ${lot.area ? `${number(lot.area)} m²` : 'Área a confirmar'}</span></header><form id="interest-form"><label>Seu nome<input name="name" autocomplete="name" minlength="2" required maxlength="100"></label><label>WhatsApp com DDD<input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="(00) 00000-0000"></label><p class="muted">${catalog.contact.leadEndpoint ? 'Seus dados serão usados para responder ao interesse neste lote.' : 'O atendimento ainda não está conectado. Você pode salvar seu interesse apenas neste navegador; nenhum dado será enviado.'}</p><button class="buyer-primary" type="submit">${catalog.contact.leadEndpoint ? 'Enviar interesse' : 'Salvar meu interesse'}</button><p class="lead-message" role="status"></p></form></section>`;
+  const views = { overview, payment, potential };
+  return `<button type="button" class="sheet-handle" data-action="sheet" aria-label="Expandir ou recolher informações do lote" aria-expanded="${state.sheet !== 'collapsed'}"><span></span></button>
+    <header class="lot-panel-heading"><div><p class="eyebrow">QUADRA ${String(lot.block).padStart(2, '0')}</p><h2>Lote ${String(lot.number).padStart(2, '0')}</h2></div><div><button type="button" data-favorite="${lot.id}" class="icon-button ${favorite ? 'is-favorite' : ''}" aria-label="${favorite ? 'Remover dos favoritos' : 'Favoritar lote'}" aria-pressed="${favorite}">${icon('heart')}</button><button type="button" data-action="close-lot" class="icon-button" aria-label="Fechar lote">${icon('close')}</button></div></header>
+    <div class="lot-panel-summary" aria-label="Resumo do lote"><div><span>Área do lote</span><strong>${lot.area ? `${number(lot.area)} <small>m²</small>` : 'A confirmar'}</strong></div><div><span>Valor total</span><strong>${money(lot.totalPrice)}</strong></div></div>
+    <nav class="lot-panel-tabs" role="tablist" aria-label="Informações do lote" ${state.leadOpen ? 'hidden' : ''}>${lotPanelTabs.map(item => `<button type="button" id="lot-tab-${item.id}" role="tab" data-lot-tab="${item.id}" aria-selected="${tab === item.id}" aria-controls="lot-view-${item.id}" tabindex="${tab === item.id ? 0 : -1}" ${item.id === 'potential' && lot.type === 'utility' ? 'disabled title="Área destinada à infraestrutura"' : ''}>${item.name}</button>`).join('')}</nav>
+    <div class="lot-panel-scroll">${lotPanelTabs.map(item => `<section class="lot-tab-view lot-tab-${item.id}" id="lot-view-${item.id}" role="tabpanel" aria-labelledby="lot-tab-${item.id}" tabindex="0" ${tab === item.id && !state.leadOpen ? '' : 'hidden'}>${tab === item.id && !state.leadOpen ? views[item.id]() : ''}</section>`).join('')}${state.leadOpen ? contact() : ''}</div>
+    <footer class="lot-panel-footer">${state.leadOpen ? '<button type="button" class="lot-contact-back" data-action="close-contact">← Voltar às informações</button>' : `<button type="button" class="lot-step-button" data-action="previous-lot" aria-label="Ver lote anterior na mesma quadra" title="Lote anterior">←</button><button type="button" class="buyer-primary lot-interest-cta" data-action="interest">Tenho interesse ${icon('arrow')}</button><button type="button" class="lot-step-button" data-action="next-lot" aria-label="Ver próximo lote na mesma quadra" title="Próximo lote">→</button>`}</footer>`;
+}

@@ -1,0 +1,134 @@
+/* The lot sheet has one summary, one active view and one persistent action. */
+.lot-panel { background: #fafbf6; overflow: hidden; }
+.lot-panel-heading { padding: 18px 19px 10px; flex: none; }
+#buyer-experience .lot-panel-heading h2 { font-size: 29px; line-height: 1.1; }
+#buyer-experience .lot-panel-heading .eyebrow { font-size: 8px; margin-bottom: 5px; }
+#buyer-experience .lot-panel-heading .icon-button { width: 40px; min-width: 40px; min-height: 40px; border: 1px solid #e0e5d9; border-radius: 50%; }
+.lot-panel-heading > div:last-child { gap: 6px; }
+.lot-panel-summary { display: grid; grid-template-columns: .9fr 1.3fr; gap: 14px; padding: 8px 19px 15px; flex: none; }
+.lot-panel-summary > div { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.lot-panel-summary > div + div { border-left: 1px solid #dce3d5; padding-left: 14px; }
+.lot-panel-summary span { font-size: 10px; color: #849078; }
+.lot-panel-summary strong { color: #385541; font-family: Georgia,serif; font-weight: 400; font-size: clamp(18px,1.5vw,23px); letter-spacing: -.5px; line-height: 1.25; overflow-wrap: anywhere; }
+.lot-panel-summary > div:first-child strong { font-size: 24px; }
+.lot-panel-summary small { font-family: Inter,"Segoe UI",sans-serif; font-size: 11px; letter-spacing: 0; color: #839276; }
+.lot-panel-tabs { margin: 0 14px 12px; padding: 4px; border: 1px solid #dee5d6; background: #eef2e7; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 3px; border-radius: 11px; flex: none; }
+#buyer-experience .lot-panel-tabs button { min-width: 0; min-height: 40px; padding: 8px 3px; border-radius: 7px; font-size: 11px; color: #7c8c6e; line-height: 1.2; }
+#buyer-experience .lot-panel-tabs button[aria-selected=true] { color: #365d48; background: #fffef7; box-shadow: 0 2px 7px #344e2910; font-weight: 600; }
+#buyer-experience .lot-panel-tabs button:disabled { opacity: .42; cursor: default; }
+.lot-panel-scroll { flex: 1 1 0; min-height: 0; padding: 0 19px 20px; scroll-padding-block: 12px; }
+.lot-tab-view { outline-offset: -2px; }
+.lot-overview-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px 10px; margin: 4px 0 15px; }
+.lot-overview-meta > span:last-child { font-size: 11px; color: #839178; }
+.lot-overview-meta .lot-status { margin: 0; font-size: 10px; }
+.lot-unit-price { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 15px; border-bottom: 1px solid #e1e6d9; margin-bottom: 18px; }
+.lot-unit-price span { font-size: 10px; color: #88937b; }
+.lot-unit-price strong { font-size: 12px; font-weight: 500; color: #617b55; }
+#buyer-experience .lot-dimensions-block h3 { font-size: 13px; font-weight: 500; margin-bottom: 11px; color: #506e49; }
+.lot-dimensions-block .dimension-grid { margin: 0 0 12px; gap: 8px; }
+.lot-dimensions-block .dimension-grid > div { background: #f0f4e9; border-color: #e1e7d8; padding: 11px; }
+.lot-dimensions-block .dimension-grid span { line-height: 1.5; }
+.lot-dimensions-block .dimension-grid strong { font-size: 14px; }
+#buyer-experience .lot-dimension-details { border: 1px solid #e1e6d9; border-radius: 9px; padding: 0 11px; margin: 4px 0 14px; }
+#buyer-experience .lot-dimension-details > summary { min-height: 43px; padding: 12px 0; font-size: 10px; }
+.lot-dimension-details > p { font-size: 10px; color: #829176; line-height: 1.7; }
+.lot-explore-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; margin: 17px 0 12px; }
+#buyer-experience .lot-explore-grid button { display: grid; justify-items: start; align-content: start; gap: 7px; min-height: 99px; padding: 12px; text-align: left; border: 1px solid #dce4d1; background: #f0f4e8; border-radius: 11px; }
+.lot-explore-icon { color: #7b8e5c; }
+.lot-explore-icon svg { width: 21px!important; height: 21px!important; }
+.lot-explore-grid strong { font-size: 11px; font-weight: 500; color: #4a6840; }
+.lot-explore-grid small { font-size: 9px; line-height: 1.5; color: #88957b; }
+.lot-secondary-actions { margin: 10px 0 0; }
+#buyer-experience .lot-secondary-actions button { font-size: 11px; min-height: 41px; padding: 7px; }
+.lot-tab-heading { margin: 4px 0 18px; }
+.lot-tab-heading > p { font-size: 7px; letter-spacing: .14em; line-height: 1.7; color: #999276; margin-bottom: 7px; }
+#buyer-experience .lot-tab-heading h3 { font-family: Georgia,serif; font-size: 22px; font-weight: 400; color: #3d5d49; margin: 0 0 8px; line-height: 1.2; }
+.lot-tab-heading > span { display: block; font-size: 10px; line-height: 1.7; color: #87947b; }
+.lot-tab-payment .payment-modes { margin-bottom: 11px; }
+.lot-tab-payment .payment-entry { padding: 13px; border: 1px solid #e0e6d6; border-radius: 10px; background: #f3f6ec; gap: 9px; }
+.lot-tab-payment .payment-plan { padding: 16px; gap: 13px; background: #edf2e3; }
+.lot-tab-payment .payment-plan strong { font-size: 24px; color: #486742; }
+.lot-tab-payment .payment-plan > div { gap: 7px; }
+.lot-tab-payment .payment-source { font-size: 10px; }
+.lot-panel-footer { flex: none; display: grid; grid-template-columns: 42px minmax(0,1fr) 42px; gap: 9px; padding: 11px 15px 13px; border-top: 1px solid #dfe6d5; background: #f6f8ee; }
+#buyer-experience .lot-panel-footer button { min-height: 43px; }
+#buyer-experience .lot-interest-cta { justify-content: center!important; font-size: 12px; gap: 8px; border-radius: 9px; }
+#buyer-experience .lot-step-button { border: 1px solid #d9e2cd; background: #eef3e5; color: #6b8258; font-size: 18px; }
+#buyer-experience .lot-contact-back { grid-column: 1/-1; font-size: 11px; color: #607d51; border: 1px solid #d8e2cd; background: #edf3e5; }
+.lot-contact-view #interest-form { gap: 15px; }
+.lot-contact-view #interest-form label { font-size: 12px; gap: 8px; }
+.lot-contact-view #interest-form input { min-height: 46px; font-size: 16px; }
+.lot-contact-view .muted { font-size: 10px!important; }
+
+/* The tab already names this feature: its internal launcher is redundant here. */
+.lot-tab-potential .potential-eyebrow, #buyer-experience .lot-tab-potential .potential-toggle { display: none; }
+.lot-tab-potential #potential-body { padding-top: 0; }
+.lot-tab-potential .terrain-potential:not(.is-combined) .potential-lot-pills { display: none; }
+.lot-tab-potential .potential-dimensions { margin-top: 0; }
+.lot-tab-potential .potential-dimensions > div { padding: 9px; gap: 4px; }
+.lot-tab-potential .potential-dimensions strong { font-size: 14px; }
+#buyer-experience .potential-options { gap: 8px; }
+#buyer-experience details.potential-option { margin: 0; padding: 0; overflow: hidden; border-radius: 10px; }
+#buyer-experience details.potential-option > summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 70px; padding: 12px; cursor: pointer; list-style: none; }
+.potential-option > summary::-webkit-details-marker { display: none; }
+.potential-option > summary > span:first-child { min-width: 0; }
+.potential-option-name { display: block; font-family: Georgia,serif; color: #48644c; font-size: 17px; font-weight: 400; line-height: 1.3; }
+.potential-option > summary .potential-option-facts { margin-top: 5px; font-size: 9px; }
+.potential-option .potential-new { margin-bottom: 6px; }
+.potential-card-indicator { flex: none; color: #83956d; font-size: 21px; width: 22px; text-align: center; }
+.potential-option[open] .potential-card-indicator { transform: rotate(45deg); }
+.potential-option-body { padding: 0 12px 13px; }
+.potential-option-body > p { padding-top: 10px; border-top: 1px solid #dfe6d5; margin-bottom: 9px; }
+.potential-option .potential-active { padding: 12px; background: #f4f7ec; }
+.potential-active .potential-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+#buyer-experience .potential-plan, #buyer-experience .potential-profile, #buyer-experience .potential-neighbors { border: 1px solid #dfe5d4; border-radius: 9px; margin: 11px 0; padding: 0 11px; }
+#buyer-experience .potential-plan > summary, #buyer-experience .potential-profile > summary, #buyer-experience .potential-neighbors > summary { min-height: 43px; padding: 12px 0; font-size: 11px; color: #6e845e; font-weight: 400; }
+.potential-profile > div { padding-bottom: 10px; }
+.potential-plan .potential-diagram { margin-top: 0; }
+.potential-disclaimer { font-size: 9px; color: #939b88; }
+
+@media (max-width: 960px) {
+  .lot-panel { height: min(600px,max(350px,calc(var(--app-height) * .54))); padding-bottom: env(safe-area-inset-bottom); }
+  .lot-panel[data-sheet=full] { height: calc(var(--app-height) * .87); }
+  .lot-panel[data-sheet=collapsed] { height: calc(142px + env(safe-area-inset-bottom)); }
+  .lot-panel-heading { padding: 0 var(--inset-right) 8px var(--inset-left); }
+  #buyer-experience .lot-panel-heading h2 { font-size: 24px; }
+  #buyer-experience .lot-panel-heading .icon-button { min-width: 44px; width: 44px; min-height: 44px; }
+  .lot-panel-summary { padding: 4px var(--inset-right) 12px var(--inset-left); gap: 12px; }
+  .lot-panel-summary > div + div { padding-left: 12px; }
+  .lot-panel-summary strong { font-size: 20px; }
+  .lot-panel-summary > div:first-child strong { font-size: 23px; }
+  .lot-panel-summary span { font-size: 10px; }
+  .lot-panel-tabs { margin: 0 var(--inset-right) 10px var(--inset-left); }
+  #buyer-experience .lot-panel-tabs button { min-height: 44px; font-size: 12px; }
+  .lot-panel-scroll { padding: 0 var(--inset-right) 18px var(--inset-left); }
+  .lot-panel-footer { padding: 10px var(--inset-right) 10px var(--inset-left); grid-template-columns: 44px minmax(0,1fr) 44px; gap: 8px; }
+  #buyer-experience .lot-panel-footer button { min-height: 44px; }
+  .lot-panel-open #buyer-experience .buyer-navigation { display: none; }
+  .lot-panel-open #buyer-experience .buyer-results, .lot-panel-open #buyer-experience .buyer-filters { visibility: hidden; }
+  .lot-panel[data-sheet=collapsed] .lot-panel-tabs, .lot-panel[data-sheet=collapsed] .lot-panel-scroll, .lot-panel[data-sheet=collapsed] .lot-panel-footer { display: none; }
+  .lot-panel[data-sheet=collapsed] .lot-panel-summary { padding-bottom: 8px; }
+  .lot-tab-heading { margin-top: 3px; margin-bottom: 14px; }
+  .lot-explore-grid { margin-top: 14px; }
+  #buyer-experience .potential-option-body > button { min-height: 44px; }
+}
+@media (max-height: 540px) and (max-width: 1100px) and (orientation: landscape) {
+  .lot-panel { height: auto!important; padding-bottom: 0; }
+  .lot-panel-heading { padding: 11px 13px 6px; }
+  #buyer-experience .lot-panel-heading h2 { font-size: 23px; }
+  .lot-panel-summary { padding: 3px 13px 10px; }
+  .lot-panel-summary strong, .lot-panel-summary > div:first-child strong { font-size: 19px; }
+  .lot-panel-tabs { margin: 0 10px 7px; }
+  #buyer-experience .lot-panel-tabs button { min-height: 44px; font-size: 11px; }
+  .lot-panel-scroll { padding: 0 13px 15px; }
+  .lot-panel-footer { padding: 8px 10px; }
+  .lot-panel[data-sheet=collapsed] .lot-panel-tabs, .lot-panel[data-sheet=collapsed] .lot-panel-footer { display: grid; }
+  .lot-panel[data-sheet=collapsed] .lot-panel-scroll { display: block; }
+}
+@media (max-width: 360px) {
+  .lot-panel-summary { grid-template-columns: .8fr 1.25fr; gap: 8px; }
+  .lot-panel-summary strong { font-size: 18px; }
+  #buyer-experience .lot-interest-cta { font-size: 11px; padding: 8px; }
+  .lot-panel-footer { gap: 6px; }
+  .potential-option-name { font-size: 16px; }
+}

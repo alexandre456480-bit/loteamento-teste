@@ -1,0 +1,218 @@
+:root {
+  --app-height: 100dvh;
+  --visible-top: 0px;
+  --visible-bottom: 0px;
+  --ui-gap: clamp(12px, 1.7vw, 24px);
+  --inset-top: max(var(--ui-gap), env(safe-area-inset-top));
+  --inset-bottom: max(var(--ui-gap), env(safe-area-inset-bottom));
+  --inset-left: max(var(--ui-gap), env(safe-area-inset-left));
+  --inset-right: max(var(--ui-gap), env(safe-area-inset-right));
+  --panel-top: calc(var(--visible-top) + var(--inset-top) + 90px);
+  --panel-width: clamp(280px, 25vw, 354px);
+}
+html, body { width: 100%; height: 100%; overscroll-behavior: none; }
+body { -webkit-text-size-adjust: 100%; }
+#viewer { overflow: hidden; }
+#viewer canvas { width: 100%; height: 100%; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.identity { top: calc(var(--visible-top) + var(--inset-top)); left: var(--inset-left); max-width: calc(100% - var(--inset-left) - var(--inset-right)); }
+.identity h1 { font-size: clamp(21px, 2.3vw, 29px); }
+.view-caption { top: calc(var(--visible-top) + var(--inset-top) + 12px); right: var(--inset-right); bottom: auto; }
+.help { bottom: calc(var(--visible-bottom) + var(--inset-bottom)); max-width: calc(100% - 32px); justify-content: center; flex-wrap: wrap; white-space: normal; text-align: center; }
+.legend { left: var(--inset-left); bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 28px); }
+#buyer-experience .buyer-navigation {
+  top: var(--panel-top); left: var(--inset-left); right: auto;
+  width: var(--panel-width); max-width: calc(100vw - var(--inset-left) - var(--inset-right));
+  max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom) - 90px);
+  overflow: auto; overscroll-behavior: contain; scrollbar-width: thin;
+}
+#buyer-experience .buyer-results, #buyer-experience .buyer-filters {
+  left: var(--inset-left); right: auto; width: var(--panel-width);
+  max-width: calc(100vw - var(--inset-left) - var(--inset-right));
+  max-height: max(60px, calc(var(--visible-top) + var(--app-height) - var(--buyer-results-top, 430px) - var(--inset-bottom)));
+  overscroll-behavior: contain;
+}
+.lot-panel {
+  top: var(--panel-top); right: var(--inset-right); left: auto;
+  bottom: calc(var(--visible-bottom) + var(--inset-bottom));
+  width: var(--panel-width); max-width: none; min-height: 0;
+}
+.lot-panel-heading, .solar-heading, .nearby-header { flex-shrink: 0; }
+.lot-panel-scroll, .solar-body, .nearby-scroll { min-height: 0; -webkit-overflow-scrolling: touch; }
+.lot-panel-scroll { overflow-x: hidden; }
+.lot-panel-heading > div, .explorer-heading > div { min-width: 0; }
+.dimension-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dimension-grid strong, .payment-entry, .payment-source, .nearby-header h2 { overflow-wrap: anywhere; }
+.lot-key-info > div { flex-wrap: wrap; }
+.payment-entry > div { flex-wrap: wrap; }
+.payment-entry strong { margin-left: auto; text-align: right; }
+.comparison-drawer {
+  bottom: calc(var(--visible-bottom) + var(--inset-bottom))!important;
+  width: min(960px, calc(100vw - var(--inset-left) - var(--inset-right)));
+  max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom));
+}
+.comparison-cards { overscroll-behavior-x: contain; scrollbar-width: thin; padding-bottom: 8px; }
+.comparison-cards > article { flex: 1 0 250px; min-width: 0; }
+.comparison-cards .plan-selector select { max-width: 100%; }
+.buyer-toast { bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 10px); }
+.solar-panel { top: var(--panel-top); left: var(--inset-left); width: var(--panel-width); max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom) - 90px); }
+.solar-date-row, .solar-presets { flex-wrap: wrap; }
+.solar-date-row > label { flex: 1; min-width: 120px; }
+.solar-date-row input { width: 100%; }
+.solar-time-label { min-width: 0; }
+.solar-close, .nearby-close { min-width: 44px; min-height: 44px; }
+.solar-launcher { right: var(--inset-right); bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 108px); }
+.nearby-launcher { right: var(--inset-right); bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 38px); }
+.nearby-dialog { width: min(540px, calc(100vw - var(--inset-left) - var(--inset-right))); max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom)); margin-top: auto; margin-bottom: auto; }
+#loading { padding: var(--inset-top) var(--inset-right) var(--inset-bottom) var(--inset-left); }
+#loading p { font-size: clamp(17px, 3vw, 21px); }
+.loading-symbol { flex-shrink: 0; }
+@keyframes responsive-sheet-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 960px) {
+  :root { --panel-top: calc(var(--visible-top) + var(--inset-top) + 74px); }
+  .identity { gap: 7px; }
+  .identity-mark { width: 34px; height: 48px; }
+  .identity-mark svg { width: 32px; }
+  .identity .eyebrow { font-size: 8px; }
+  .identity .subtitle { font-size: 9px; margin-top: 5px; }
+  .view-caption { display: none; }
+  #buyer-experience .buyer-navigation {
+    width: min(400px, calc(100vw - var(--inset-left) - var(--inset-right)));
+    max-width: none; padding: 13px; border-radius: 13px;
+    max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom) - 74px);
+  }
+  #buyer-experience .explorer-heading { margin-bottom: 11px; }
+  #buyer-experience .explorer-heading:has(+ [hidden]) { margin-bottom: 0; }
+  #buyer-experience .explorer-heading h2 { font-size: 21px; }
+  #buyer-experience .explorer-heading p { font-size: 7px; }
+  #buyer-experience .explorer-heading > button { min-height: 44px; padding: 7px 9px; }
+  #buyer-experience .lot-search input, #buyer-experience .block-navigation select,
+  #buyer-experience input:not([type=checkbox]), #buyer-experience select, .solar-system input[type=date] { font-size: 16px; }
+  #buyer-experience button { min-height: 44px; }
+  #buyer-experience .buyer-actions button, #buyer-experience .explorer-footer button { min-height: 44px!important; }
+  #buyer-experience .buyer-actions { gap: 6px; }
+  #buyer-experience .lot-search { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #buyer-experience .block-navigation select { max-width: none; }
+  #buyer-experience .explorer-hint { display: none; }
+  #buyer-experience .buyer-results, #buyer-experience .buyer-filters {
+    width: min(400px, calc(100vw - var(--inset-left) - var(--inset-right)));
+    max-width: none;
+    max-height: max(60px, calc(var(--visible-top) + var(--app-height) - var(--buyer-results-top, 250px) - var(--inset-bottom)));
+  }
+  .lot-panel {
+    left: 0; right: 0; top: auto; bottom: var(--visible-bottom); width: 100%; max-width: none;
+    height: min(480px, calc(var(--app-height) * .47));
+    max-height: calc(var(--app-height) - var(--inset-top) - 12px);
+    border-radius: 19px 19px 0 0; z-index: 10;
+    padding-bottom: env(safe-area-inset-bottom);
+    animation: responsive-sheet-in .2s ease; transition: height .2s ease;
+  }
+  .lot-panel[data-sheet=full] { height: calc(var(--app-height) * .84); }
+  .lot-panel[data-sheet=collapsed] { height: calc(122px + env(safe-area-inset-bottom)); }
+  #buyer-experience .sheet-handle { display: flex!important; min-height: 26px!important; touch-action: none; }
+  .sheet-handle span { display: block; width: 36px; height: 4px; border-radius: 8px; background: #bac7aa; }
+  .lot-panel-heading { padding: 3px max(18px, env(safe-area-inset-right)) 10px max(18px, env(safe-area-inset-left)); }
+  .lot-panel-scroll { padding: 0 max(18px, env(safe-area-inset-right)) 22px max(18px, env(safe-area-inset-left)); }
+  #buyer-experience .lot-panel-heading h2 { font-size: 26px; }
+  .lot-panel[data-sheet=collapsed] .lot-panel-scroll { overflow: hidden; pointer-events: none; }
+  .lot-panel[data-sheet=collapsed] .lot-status { display: none; }
+  .lot-panel-open .help, .lot-panel-open .legend, .lot-panel-open .view-caption { visibility: hidden; }
+  .lot-panel-open #buyer-experience .buyer-navigation { max-height: max(64px, calc(var(--app-height) * .42 - 90px)); }
+  .concept-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #buyer-experience .concept-choice { font-size: 10px; min-height: 66px; }
+  .comparison-drawer {
+    left: 0; bottom: var(--visible-bottom)!important; transform: none;
+    width: 100%; max-height: calc(var(--app-height) * .83); z-index: 13;
+    border-radius: 18px 18px 0 0; padding: 16px var(--inset-right) max(18px, env(safe-area-inset-bottom)) var(--inset-left);
+  }
+  .comparison-cards > article { flex: 0 0 min(290px, calc(100vw - 58px)); min-width: 0; }
+  .buyer-toast { bottom: calc(var(--visible-bottom) + var(--inset-bottom)); z-index: 30; }
+  .solar-panel {
+    left: 0; right: 0; top: auto; bottom: var(--visible-bottom); width: 100%;
+    max-height: min(450px, calc(var(--app-height) * .54)); border-radius: 18px 18px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .solar-heading { padding: 12px 18px 10px; align-items: center; }
+  .solar-heading h2 { font-size: 23px; }
+  .solar-body { padding: 12px max(18px, env(safe-area-inset-right)) 20px max(18px, env(safe-area-inset-left)); }
+  .solar-selection { margin-bottom: 10px; }
+  .solar-system button { min-height: 44px; }
+  .solar-presets { gap: 8px; }
+  .solar-presets > div { display: grid; grid-template-columns: repeat(4, 1fr); flex: 1; }
+  .solar-presets .solar-play { flex: 1; white-space: nowrap; }
+  .solar-time-row { gap: 5px; }
+  .solar-time-label output { font-size: 33px; }
+  #solar-time { touch-action: pan-y; }
+  .solar-mode-open .lot-panel, .solar-mode-open .legend, .solar-mode-open .help { visibility: hidden; }
+  .solar-launcher, .nearby-launcher { min-height: 48px; gap: 8px; padding: 10px 13px; }
+  .solar-launcher small, .nearby-launcher small { display: none; }
+  .solar-launcher { bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 60px); }
+  .nearby-launcher { bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 4px); }
+  .solar-launcher svg { width: 23px; height: 23px; }
+  .legend { bottom: calc(var(--visible-bottom) + var(--inset-bottom) + 36px); gap: 6px; font-size: 9px; }
+  .help { left: var(--inset-left); right: var(--inset-right); transform: none; font-size: 10px; justify-content: flex-start; }
+  .help span:last-child, .help b:last-of-type { display: inline; }
+  .nearby-header { padding: 18px; }
+  .nearby-header h2 { font-size: clamp(23px, 5vw, 29px); }
+  .nearby-scroll { padding: 18px; }
+  .nearby-tabs button { min-height: 44px; }
+}
+
+/* Phones turned sideways: use one side panel instead of covering the map vertically. */
+@media (max-height: 540px) and (max-width: 1100px) and (orientation: landscape) {
+  :root { --panel-top: calc(var(--visible-top) + var(--inset-top) + 56px); --panel-width: min(320px, 43vw); }
+  .identity-mark { display: none; }
+  .identity .subtitle { display: none; }
+  .identity h1 { font-size: 21px; }
+  .identity .eyebrow { font-size: 7px; }
+  .view-caption, .legend, .help { display: none; }
+  #buyer-experience .buyer-navigation {
+    width: var(--panel-width); max-height: calc(var(--app-height) - var(--inset-top) - var(--inset-bottom) - 56px);
+    padding: 10px;
+  }
+  #buyer-experience .buyer-results, #buyer-experience .buyer-filters { width: var(--panel-width); }
+  .lot-panel, .solar-panel {
+    left: auto; right: var(--inset-right); top: calc(var(--visible-top) + var(--inset-top));
+    bottom: calc(var(--visible-bottom) + var(--inset-bottom)); width: var(--panel-width); max-width: none;
+    height: auto!important; max-height: none; border-radius: 14px; padding-bottom: 0;
+  }
+  #buyer-experience .sheet-handle { display: none!important; }
+  .lot-panel-heading { padding: 12px 14px 8px; }
+  .lot-panel-scroll { padding: 0 14px 16px; overflow: auto!important; pointer-events: auto!important; }
+  .lot-panel[data-sheet=collapsed] .lot-status { display: inline-block; }
+  .lot-panel[data-sheet=collapsed] .lot-key-info span { display: inline; }
+  .lot-panel-open #buyer-experience .buyer-navigation { visibility: hidden; }
+  .solar-heading { padding: 10px 12px; }
+  .solar-eyebrow { display: none; }
+  .solar-body { padding: 10px 12px 16px; }
+  .solar-launcher, .nearby-launcher { right: var(--inset-right); }
+  .nearby-dialog { max-height: calc(var(--app-height) - 16px); }
+  .nearby-header { padding: 12px 18px; }
+  .nearby-eyebrow { margin-bottom: 5px; }
+  .nearby-category { margin-top: 5px; }
+  .comparison-drawer { max-height: calc(var(--app-height) - 16px); }
+}
+
+@media (max-width: 380px) {
+  .identity h1 { font-size: 20px; }
+  .identity-mark { width: 25px; }
+  .identity-mark svg { width: 25px; }
+  #buyer-experience .explorer-heading h2 { font-size: 19px; }
+  #buyer-experience .buyer-actions button { font-size: 10px; gap: 4px; }
+  .solar-presets .solar-play { flex-basis: 100%; }
+  .solar-date-row { gap: 6px; }
+  .solar-seasons button { padding: 6px 5px; }
+  .lot-key-info strong { font-size: 22px; }
+}
+@media (pointer: coarse) {
+  #buyer-experience button, .nearby-dialog button, .solar-system button { min-height: 44px; }
+  #buyer-experience .icon-button { min-width: 44px; }
+  #buyer-experience .lot-search input, #buyer-experience .block-navigation select,
+  #buyer-experience input:not([type=checkbox]), #buyer-experience select, .solar-system input[type=date] { font-size: 16px; }
+  #lot-filters fieldset > label { min-height: 44px; padding: 6px 2px; font-size: 12px; }
+  #lot-filters input[type=checkbox] { width: 18px; height: 18px; }
+  .lot-tooltip { display: none!important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lot-panel, .solar-panel, .comparison-drawer { animation: none; transition: none; }
+}
