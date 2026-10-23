@@ -191,9 +191,14 @@ function makeNumbers() {
   context.textBaseline = 'middle';
   for (let n = 1; n <= 47; n++) {
     const cell = n - 1;
-    context.font = '500 70px "Segoe UI", sans-serif';
-    context.fillStyle = '#435039';
-    context.fillText(String(n).padStart(2, '0'), (cell % 8) * 128 + 64, Math.floor(cell / 8) * 128 + 65);
+    context.font = '700 80px "Segoe UI", sans-serif';
+    context.strokeStyle = '#fffbed';
+    context.lineWidth = 7;
+    context.lineJoin = 'round';
+    context.fillStyle = '#182c24';
+    const text = String(n).padStart(2, '0'), x = (cell % 8) * 128 + 64, y = Math.floor(cell / 8) * 128 + 65;
+    context.strokeText(text, x, y);
+    context.fillText(text, x, y);
   }
   const atlas = new THREE.CanvasTexture(canvas);
   atlas.colorSpace = THREE.SRGBColorSpace;
@@ -201,7 +206,7 @@ function makeNumbers() {
   const geometries = [];
   for (const block of data.blocks) {
     for (const lot of block.lots) {
-      const geometry = new THREE.PlaneGeometry(2.3, 2.3);
+      const geometry = new THREE.PlaneGeometry(2.7, 2.7);
       const uv = geometry.attributes.uv;
       const cell = lot.number - 1;
       for (let i = 0; i < uv.count; i++) {
@@ -238,7 +243,7 @@ function makeNumbers() {
     numbering.add(sprite);
   }
   const geometry = mergeGeometries(geometries, false);
-  const material = new THREE.MeshBasicMaterial({ map: atlas, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1 });
+  const material = new THREE.MeshBasicMaterial({ map: atlas, transparent: true, depthWrite: false, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -1 });
   const mesh = new THREE.Mesh(geometry, material);
   lotNumbering.add(mesh);
   geometries.forEach(g => g.dispose());
@@ -677,7 +682,7 @@ function render(timestamp) {
     const distance = camera.isOrthographicCamera ? 500 / camera.zoom : camera.position.distanceTo(controls.target);
     labelsFade = reducedMotion.matches ? Number(showNumbers) : THREE.MathUtils.damp(labelsFade, Number(showNumbers), 16, delta);
     active ||= Math.abs(labelsFade - Number(showNumbers)) > 0.002;
-    const opacity = THREE.MathUtils.clamp((850 - distance) / 330, 0, 0.9) * labelsFade;
+    const opacity = THREE.MathUtils.clamp((1250 - distance) / 480, 0, 1) * labelsFade;
     numbering.visible = labelsFade > 0.002;
     lotNumbering.visible = opacity > 0.015;
     lotNumbering.children.forEach(child => { child.material.opacity = opacity; });
@@ -752,7 +757,7 @@ function setCamera(view) {
   controls.mouseButtons.LEFT = THREE.MOUSE.PAN;
   controls.mouseButtons.RIGHT = THREE.MOUSE.ROTATE;
   controls.touches.ONE = THREE.TOUCH.PAN;
-  controls.touches.TWO = THREE.TOUCH.DOLLY_PAN;
+  controls.touches.TWO = view === 'top' ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
   controls.listenToKeyEvents(renderer.domElement);
   controls.addEventListener('change', () => { lastCameraChange = performance.now(); requestRender(); });
   controls.addEventListener('start', () => { cameraFlight = null; pendingPick = false; setHovered(null); requestRender(); });
